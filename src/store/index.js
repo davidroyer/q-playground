@@ -26,24 +26,15 @@ export default new Vuex.Store({
       Articles.doc(articleId).delete();
     }),
 
-    addArticle: firestoreAction((context, payload) => {
-      return Articles.add(payload);
+    addArticle: firestoreAction(async (context, payload) => {
+      await Articles.add(payload);
     }),
 
-    /**
-     * @example payload
-     * {
-     *  title: 'Updated Title'
-     * }
-     *
-     */
     updateArticle: firestoreAction(async (context, payload) => {
       const { id, ...article } = payload;
       await Articles.doc(id).set(article);
     })
   },
 
-  // enable strict mode (adds overhead!)
-  // for dev mode only
-  strict: process.env.DEV
+  strict: process.env.DEV // enable strict mode (adds overhead!) | for dev mode only
 });

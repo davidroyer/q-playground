@@ -7,9 +7,10 @@
     <q-editor v-model="newArticle.content" min-height="5rem" />
     <q-btn
       color="primary"
-      @click="$store.dispatch('addArticle', newArticle)"
+      @click="handleArticleCreation"
       label="Create Article"
     />
+    <!-- @click="$store.dispatch('addArticle', newArticle)" -->
 
     <q-btn
       color="primary"
@@ -43,7 +44,7 @@ import { newArticle } from "../data/index.js";
 
 export default {
   data: () => ({
-    newArticle
+    newArticle: { ...newArticle }
   }),
 
   computed: {
@@ -58,9 +59,15 @@ export default {
       this.newArticle = { id, ...article };
     },
 
+    async handleArticleCreation() {
+      await this.$store.dispatch("addArticle", this.newArticle);
+      this.newArticle = { ...newArticle };
+      alert("New Article Created!");
+    },
+
     async handleArticleUpdate() {
       await this.$store.dispatch("updateArticle", this.newArticle);
-      this.newArticle = newArticle;
+      this.newArticle = { ...newArticle };
       alert("Update from handleArticleUpdate");
     }
   }
