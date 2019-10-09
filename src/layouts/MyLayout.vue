@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
+        <!-- <q-btn
           flat
           dense
           round
@@ -10,7 +10,7 @@
           aria-label="Menu"
         >
           <q-icon name="menu" />
-        </q-btn>
+        </q-btn> -->
 
         <q-toolbar-title>
           Quasar App
